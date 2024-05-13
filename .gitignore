@@ -28,3 +28,4 @@
 /.idea/phpspec.xml
 /.idea/codeception.xml
 /tailwind.config.js
+/.idea/dataSources.xml
