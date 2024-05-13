@@ -25,3 +25,6 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+/.idea/phpspec.xml
+/.idea/codeception.xml
+/tailwind.config.js
