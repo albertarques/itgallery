@@ -39,8 +39,10 @@ App\Entity\Artwork:
     notes:
     documentation_notes:
     pdf_notes:
+    image:
+    image_file:
 
-App\Entity\Media:
-  media_{1..10}:
-    artwork: '@artwork_<numberBetween(1, 10)>'
-    source: '<url()>'
+App\Entity\User:
+  user_1:
+    email: 'albertarques@gmail.com'
+    password: 'developer'
