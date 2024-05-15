@@ -3,14 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\ArtworkRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ArtworkRepository::class)]
 #[Gedmo\TranslationEntity(class: ArtworkRepository::class)]
+#[Vich\Uploadable]
 
 class Artwork extends AbstractEntity
 {
@@ -101,16 +101,11 @@ class Artwork extends AbstractEntity
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $pdf_notes = null;
 
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\OneToMany(targetEntity: Media::class, mappedBy: 'artwork')]
-    private Collection $media;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
-    public function __construct()
-    {
-        $this->media = new ArrayCollection();
-    }
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image_file = null;
 
     public function getLanguage(): ?string
     {
@@ -460,33 +455,28 @@ class Artwork extends AbstractEntity
         return $this;
     }
 
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getMedia(): Collection
+    public function getImage(): ?string
     {
-        return $this->media;
+        return $this->image;
     }
 
-    public function addMedium(Media $medium): static
+    public function setImage(?string $image): static
     {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
-            $medium->setArtwork($this);
-        }
+        $this->image = $image;
 
         return $this;
     }
 
-    public function removeMedium(Media $medium): static
+    public function getImageFile(): ?string
     {
-        if ($this->media->removeElement($medium)) {
-            // set the owning side to null (unless already changed)
-            if ($medium->getArtwork() === $this) {
-                $medium->setArtwork(null);
-            }
-        }
+        return $this->image_file;
+    }
+
+    public function setImageFile(?string $image_file): static
+    {
+        $this->image_file = $image_file;
 
         return $this;
     }
+
 }
