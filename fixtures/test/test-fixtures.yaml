@@ -1,0 +1,46 @@
+App\Entity\Artwork:
+  artwork_{1..10}:
+    language: '<locale()>'
+    name: '<sentence(3, 5)>'
+    series_name: '<sentence(3, 5)>'
+    artist: '<firstName()> <lastName()>'
+    year: '<numberBetween(1600, 2024)>'
+    inventory_id: '<numberBetween(100, 500)>'
+    status: '<word()>'
+    availability: '<word()>'
+    ownership: '<firstName()> <lastName()>'
+    tags:
+      - 'tag_1'
+      - 'tag_2'
+      - 'tag_3'
+    dimensions:
+      - '<numberBetween(100, 200)>'
+      - '<numberBetween(150, 300)>'
+      - '5'
+    variable_dimensions: '<numberBetween(0, 1)>'
+    duration:
+    weight:
+    edition: '<numberBetween(1, 5)>'
+    unique_edition:
+    price:
+      - '<numberBetween(1000, 10000)>'
+      - 'EUR'
+      - '<numberBetween(1000, 10000)>'
+      - 'USD'
+    no_price:
+    artist_amount:
+    artist_amount_type:
+    description:
+    type:
+    support:
+    material:
+    location:
+    sublocation:
+    notes:
+    documentation_notes:
+    pdf_notes:
+
+App\Entity\Media:
+  media_{1..10}:
+    artwork: '@artwork_<numberBetween(1, 10)>'
+    source: '<url()>'
